@@ -32,7 +32,7 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
             <td>
-                <button type="button" class="btn btn-success">Opdater</button>
+                <a th:href="@{'/update/' + ${product.id}}" ><button type="button" class="btn btn-success">Opdater</button></a>
                 <button type="button" class="btn btn-danger">Slet</button>
             </td>
         </tr>

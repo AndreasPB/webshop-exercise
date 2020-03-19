@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ProductRepository {
+public class ProductRepository implements ICrudRepository<Product> {
 
     private List<Product> products = new ArrayList<>();
 
@@ -24,5 +24,31 @@ public class ProductRepository {
 
     public void create(Product product) {
         products.add(product);
+    }
+
+    @Override
+    public Product read(long id) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId() == id) {
+                return products.get(i);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean update(Product product) {
+        for(int i=0; i<products.size(); i++) {
+            if(products.get(i).getId() == product.getId()) {
+                products.set(i, product);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(long id) {
+        return false;
     }
 }
