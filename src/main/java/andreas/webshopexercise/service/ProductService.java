@@ -34,4 +34,8 @@ public class ProductService {
     public Product read(long id) {
         return productRepository.read(id);
     }
+
+    public boolean delete(long id) {
+        return productRepository.delete(id);
+    }
 }

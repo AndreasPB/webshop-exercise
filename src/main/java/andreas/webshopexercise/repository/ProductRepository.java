@@ -49,6 +49,12 @@ public class ProductRepository implements ICrudRepository<Product> {
 
     @Override
     public boolean delete(long id) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId() == id) {
+                products.remove(i);
+                return true;
+            }
+        }
         return false;
     }
 }
