@@ -13,8 +13,11 @@ public class ProductRepository implements ICrudRepository<Product> {
 
     public ProductRepository() {
 
-        this.products.add(new Product(1, "Kaffe", 88.1, "Kaffe er dejligt"));
-        this.products.add(new Product(2, "Te", 34.3, "Te er skønt"));
+        this.products.add(new Product(1, "Kaffe", 45.0, "Kaffe er dejligt"));
+        this.products.add(new Product(2, "Te", 30.5, "Te er skønt"));
+        this.products.add(new Product(3, "Is", 22.0, "Kølig Magnum"));
+        this.products.add(new Product(4, "Lakridspibe", 5.25, "Skippers lakridspibe"));
+        this.products.add(new Product(5, "Pepsi Max", 10.5, "Nul kalorier og god smag"));
 
     }
 
