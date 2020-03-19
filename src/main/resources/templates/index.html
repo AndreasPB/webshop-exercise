@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Bootstrap 4 Website Example</title>
     <meta charset="utf-8">
@@ -42,29 +42,27 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Varenavn</th>
             <th>Pris</th>
             <th>Beskrivelse</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Kaffe</td>
-            <td>45.0</td>
-            <td>Super lækker kaffe</td>
-        </tr>
-        <tr>
-            <td>Te</td>
-            <td>30.0</td>
-            <td>Skøn te fra kina</td>
-        </tr>
-        <tr>
-            <td>Is</td>
-            <td>22.0</td>
-            <td>Kølig Magnum</td>
+        <tr th:each="product : ${product}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td>
+                <button type="button" class="btn btn-success">Opdater</button>
+                <button type="button" class="btn btn-danger">Slet</button>
+            </td>
         </tr>
         </tbody>
     </table>
+    <button type="button" class="btn btn-primary">Opret product</button>
 </div>
 
 </body>
