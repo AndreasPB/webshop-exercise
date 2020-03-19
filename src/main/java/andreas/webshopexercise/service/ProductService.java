@@ -14,7 +14,6 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-
     public List<Product> readAll() {
         List<Product> products = new ArrayList<>();
         for (Product product: productRepository.readAll()) {
@@ -23,4 +22,7 @@ public class ProductService {
         return products;
     }
 
+    public void create(Product product) {
+        productRepository.create(product);
+    }
 }

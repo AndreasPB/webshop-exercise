@@ -21,4 +21,8 @@ public class ProductRepository {
     public List<Product> readAll() {
         return products;
     }
+
+    public void create(Product product) {
+        products.add(product);
+    }
 }
