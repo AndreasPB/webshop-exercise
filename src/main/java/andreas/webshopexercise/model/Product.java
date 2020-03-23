@@ -2,13 +2,29 @@ package andreas.webshopexercise.model;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
     private double price;
     private String description;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Company company;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private CompanyDescription companyDescription;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private Set<Category> categories;
+
 
     public Product() {
     }
@@ -50,5 +66,29 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public CompanyDescription getCompanyDescription() {
+        return companyDescription;
+    }
+
+    public void setCompanyDescription(CompanyDescription companyDescription) {
+        this.companyDescription = companyDescription;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
