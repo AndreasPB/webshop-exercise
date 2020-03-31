@@ -1,26 +1,26 @@
 package andreas.webshopexercise.controller;
 
+import andreas.webshopexercise.commands.ProductCommand;
 import andreas.webshopexercise.model.Product;
-import andreas.webshopexercise.service.ProductService;
+import andreas.webshopexercise.service.ProductServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
+@Slf4j
 @Controller
-public class HomeController {
+public class ProductController {
 
     @Autowired
-    ProductService productService;
-
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("product", productService.readAll());
-        return ("index");
-    }
+    ProductServiceImpl productService;
 
     @GetMapping("/create")
     public String create() {
@@ -28,11 +28,22 @@ public class HomeController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute Product product) {
-        productService.create(product);
+    public String create(@Valid @ModelAttribute("product") ProductCommand command, BindingResult bindingResult) {
 
+        if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.debug(objectError.toString());
+            });
+
+            // return "/create";
+        }
+
+        ProductCommand savedCommand = productService.saveProductCommand(command);
+
+        productService.create(product);
         return "redirect:/";
     }
+
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") long id, Model model) {
@@ -42,7 +53,16 @@ public class HomeController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Product product) {
+    public String update(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(objectError -> {
+                // log.debug(objectError.toString());
+            });
+
+            return "/update";
+        }
+
         productService.update(product);
 
         return "redirect:/";

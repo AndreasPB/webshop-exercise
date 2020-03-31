@@ -1,41 +1,18 @@
 package andreas.webshopexercise.service;
 
+import andreas.webshopexercise.commands.ProductCommand;
 import andreas.webshopexercise.model.Product;
-import andreas.webshopexercise.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
-@Service
-public class ProductService {
+public interface ProductService {
+    Set<Product> getProducts();
 
-    @Autowired
-    ProductRepository productRepository;
+    Product findById(long l);
 
-    public List<Product> readAll() {
-        List<Product> products = new ArrayList<>();
-        for (Product product: productRepository.readAll()) {
-            products.add(product);
-        }
-        return products;
-    }
+    ProductCommand findCommandById(long l);
 
-    public void create(Product product) {
-        productRepository.create(product);
-    }
+    ProductCommand saveRecipeCommand(ProductCommand command);
 
-    public boolean update(Product product) {
-        boolean updateOK = productRepository.update(product);
-        return updateOK;
-    }
-
-    public Product read(long id) {
-        return productRepository.read(id);
-    }
-
-    public boolean delete(long id) {
-        return productRepository.delete(id);
-    }
+    void deleteById(long idToDelete);
 }

@@ -1,10 +1,14 @@
 package andreas.webshopexercise.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
+@Data
 @Entity
 public class Product {
 
@@ -12,8 +16,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
+    @Size(min=1, max=16)
     private String name;
+
+    @Min(1)
     private double price;
+
+    @NotBlank
+    @Size(min=3, max=255)
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -26,9 +37,6 @@ public class Product {
     private Set<Category> categories;
 
 
-    public Product() {
-    }
-
     public Product(long id, String name, double price, String description) {
         this.id = id;
         this.name = name;
@@ -36,59 +44,4 @@ public class Product {
         this.description = description;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public CompanyDescription getCompanyDescription() {
-        return companyDescription;
-    }
-
-    public void setCompanyDescription(CompanyDescription companyDescription) {
-        this.companyDescription = companyDescription;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 }

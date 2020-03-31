@@ -1,7 +1,10 @@
 package andreas.webshopexercise.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class CompanyDescription {
 
@@ -14,28 +17,4 @@ public class CompanyDescription {
     @OneToOne
     private Product product;
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 }

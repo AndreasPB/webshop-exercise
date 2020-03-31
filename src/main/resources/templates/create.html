@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bootstrap 4 Website Example</title>
     <meta charset="utf-8">
@@ -17,6 +18,10 @@
     <h2>Create Product</h2><br>
 
     <form action="/create" method="post">
+        <div class="alert alert-danger">
+            <p>Venligts ret fejlene</p>
+        </div>
+
         <div class="form-group">
             <label for="id">ID</label>
             <input type="number" class="form-control" name="id" id="id" placeholder="Skriv ID">
