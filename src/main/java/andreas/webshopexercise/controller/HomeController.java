@@ -37,7 +37,6 @@ public class HomeController {
     @GetMapping("/update/{id}")
     public String update(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", productService.read(id));
-
         return "update";
     }
 

@@ -31,9 +31,9 @@ public class ProductRepository implements ICrudRepository<Product> {
 
     @Override
     public Product read(long id) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id) {
-                return products.get(i);
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
             }
         }
         return null;

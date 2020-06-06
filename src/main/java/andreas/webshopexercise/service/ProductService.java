@@ -2,7 +2,6 @@ package andreas.webshopexercise.service;
 
 import andreas.webshopexercise.model.Product;
 import andreas.webshopexercise.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,31 +10,29 @@ import java.util.List;
 @Service
 public class ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<Product> readAll() {
-        List<Product> products = new ArrayList<>();
-        for (Product product: productRepository.readAll()) {
-            products.add(product);
-        }
-        return products;
+        return new ArrayList<>(productRepository.readAll());
     }
 
     public void create(Product product) {
         productRepository.create(product);
     }
 
-    public boolean update(Product product) {
-        boolean updateOK = productRepository.update(product);
-        return updateOK;
+    public void update(Product product) {
+        productRepository.update(product);
     }
 
     public Product read(long id) {
         return productRepository.read(id);
     }
 
-    public boolean delete(long id) {
-        return productRepository.delete(id);
+    public void delete(long id) {
+        productRepository.delete(id);
     }
 }
