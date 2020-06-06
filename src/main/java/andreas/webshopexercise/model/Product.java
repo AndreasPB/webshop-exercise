@@ -18,10 +18,8 @@ public class Product {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Company company;
-
     @OneToOne(cascade = CascadeType.ALL)
     private CompanyDescription companyDescription;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private Set<Category> categories;
 
