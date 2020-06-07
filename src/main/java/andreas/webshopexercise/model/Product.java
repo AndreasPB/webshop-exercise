@@ -7,10 +7,9 @@ import java.util.Set;
 
 @Entity
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     private String name;
     private double price;
@@ -27,18 +26,18 @@ public class Product {
     public Product() {
     }
 
-    public Product(long id, String name, double price, String description) {
+    public Product(Integer id, String name, double price, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

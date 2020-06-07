@@ -35,7 +35,7 @@ public class HomeController {
     }
 
     @GetMapping("/update/{id}")
-    public String update(@PathVariable("id") long id, Model model) {
+    public String update(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("product", productService.read(id));
         return "update";
     }
@@ -48,7 +48,7 @@ public class HomeController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String delete(@PathVariable("id") Integer id) {
         productService.delete(id);
         return "redirect:/";
     }
